@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-01-create-user-profile-table
+      author: aditya
+      changes:
+        - createTable:
+            tableName: user_profile
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: fk_user_profile_user_id
+                    references: user(id)
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(100)
+              - column:
+                  name: last_name
+                  type: VARCHAR(100)
+              - column:
+                  name: avatar_file_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_user_profile_avatar_file
+                    references: user_file(id)
+              - column:
+                  name: bio
+                  type: TEXT
+              - column:
+                  name: attributes
+                  type: JSONB
+                  defaultValue: "{}"
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  defaultValueDate: NOW()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMPTZ
+                  defaultValueDate: NOW()
+                  constraints:
+                    nullable: false
+        - sql:
+            sql: CREATE INDEX idx_user_profile_attributes ON user_profile USING GIN (attributes);

@@ -63,9 +63,6 @@ databaseChangeLog:
                   defaultValueDate: NOW()
                   constraints:
                     nullable: false
-              - column:
-                  name: deleted_at
-                  type: TIMESTAMPTZ
 
         - createIndex:
             tableName: user_file

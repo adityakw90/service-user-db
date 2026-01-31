@@ -44,7 +44,6 @@ erDiagram
         UUID uid UK
         TEXT device_fingerprint
         VARCHAR device_name
-        TEXT user_agent
         TIMESTAMPTZ created_at
     }
 
@@ -67,6 +66,7 @@ erDiagram
         VARCHAR mime_type
         BIGINT size_bytes
         VARCHAR visibility
+        TIMESTAMPTZ created_at
     }
 
     user_pin {

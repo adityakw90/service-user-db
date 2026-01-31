@@ -29,9 +29,6 @@ databaseChangeLog:
                   name: device_name
                   type: VARCHAR(100)
               - column:
-                  name: user_agent
-                  type: TEXT
-              - column:
                   name: created_at
                   type: TIMESTAMPTZ
                   defaultValueDate: NOW()

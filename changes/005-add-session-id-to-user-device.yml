@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-01-add-session-id-to-user-device
+      author: aditya
+      changes:
+        - addColumn:
+            tableName: user_device
+            columns:
+              - column:
+                  name: session_id
+                  type: UUID
+                  constraints:
+                    nullable: true

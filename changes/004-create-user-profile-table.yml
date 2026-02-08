@@ -47,3 +47,8 @@ databaseChangeLog:
                     nullable: false
         - sql:
             sql: CREATE INDEX idx_user_profile_attributes ON user_profile USING GIN (attributes);
+      rollback:
+        - sql:
+            sql: DROP INDEX idx_user_profile_attributes;
+        - dropTable:
+            tableName: user_profile

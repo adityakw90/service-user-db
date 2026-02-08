@@ -7,3 +7,5 @@ databaseChangeLog:
       file: changes/003-create-file-tables.yml
   - include:
       file: changes/004-create-user-profile-table.yml
+  - include:
+      file: changes/005-add-session-id-to-user-device.yml

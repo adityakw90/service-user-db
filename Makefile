@@ -87,7 +87,7 @@ status: check-env
 	@$(DOCKER_RUN) status
 
 # Validate changelog files
-validate:
+validate: check-env
 	@$(DOCKER_RUN) validate
 
 # Generate SQL without applying

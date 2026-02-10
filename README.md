@@ -89,12 +89,13 @@ erDiagram
 The migrations are managed via **Liquibase** and are located in the `changes/` directory.
 The execution order is defined in `master.yml`.
 
-| File                                | Description                                                         | ID Prefix |
-| :---------------------------------- | :------------------------------------------------------------------ | :-------- |
-| `001-create-user-tables.yml`        | Creates `user` and `user_pin` tables.                               | `001-XX`  |
-| `002-create-device-tables.yml`      | Creates `device` and `user_device` tables.                          | `002-XX`  |
-| `003-create-file-tables.yml`        | Creates `user_file` table.                                          | `003-XX`  |
-| `004-create-user-profile-table.yml` | Creates `user_profile` table (Dependant on `user` and `user_file`). | `004-XX`  |
+| File                                    | Description                                                         | ID Prefix |
+| :-------------------------------------- | :------------------------------------------------------------------ | :-------- |
+| `001-create-user-tables.yml`            | Creates `user` and `user_pin` tables.                               | `001-XX`  |
+| `002-create-device-tables.yml`          | Creates `device` and `user_device` tables.                          | `002-XX`  |
+| `003-create-file-tables.yml`            | Creates `user_file` table.                                          | `003-XX`  |
+| `004-create-user-profile-table.yml`     | Creates `user_profile` table (Dependent on `user` and `user_file`). | `004-XX`  |
+| `005-add-session-id-to-user-device.yml` | Adds `session_id` to `user_device` table.                           | `005-XX`  |
 
 ## Environment Variables
 

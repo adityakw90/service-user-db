@@ -1,0 +1,110 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-01-create-user-table
+      author: aditya
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: uid
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: username
+                  type: VARCHAR(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: INT2
+                  defaultValueNumeric: 1
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  defaultValueDate: NOW()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMPTZ
+                  defaultValueDate: NOW()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMPTZ
+        - createIndex:
+            tableName: user
+            indexName: idx_user_uid
+            columns:
+              - column:
+                  name: uid
+        - createIndex:
+            tableName: user
+            indexName: idx_user_username
+            columns:
+              - column:
+                  name: username
+        - createIndex:
+            tableName: user
+            indexName: idx_user_email
+            columns:
+              - column:
+                  name: email
+
+  - changeSet:
+      id: 001-02-create-user-pin
+      author: aditya
+      changes:
+        - createTable:
+            tableName: user_pin
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: fk_user_pin_user_id
+                    references: user(id)
+                    nullable: false
+              - column:
+                  name: code
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  defaultValueDate: NOW()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMPTZ
+                  defaultValueDate: NOW()
+                  constraints:
+                    nullable: false

@@ -57,6 +57,8 @@ databaseChangeLog:
               - column:
                   name: deleted_at
                   type: TIMESTAMPTZ
+                  constraints:
+                    nullable: true
         - createIndex:
             tableName: user
             indexName: idx_user_uid

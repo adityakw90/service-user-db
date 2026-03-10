@@ -16,5 +16,9 @@ logs/*.log.*.*.*.*
 # generated files
 docs/
 
+# IDE
+/.claude
+/docs
+
 # test file
 /check.sh

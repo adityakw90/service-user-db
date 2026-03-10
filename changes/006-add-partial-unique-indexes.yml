@@ -1,0 +1,56 @@
+databaseChangeLog:
+  # ========================
+  # Email Field Changes
+  # ========================
+  - changeSet:
+      id: 006-01-email-partial-unique-index
+      author: aditya
+      changes:
+        - dropUniqueConstraint:
+            constraintName: user_email_key
+            tableName: user
+        - dropIndex:
+            indexName: idx_user_email
+            tableName: user
+        - sql:
+            sql: CREATE UNIQUE INDEX idx_user_email_active ON "user"(email) WHERE deleted_at IS NULL;
+      rollback:
+        - sql: DROP INDEX IF EXISTS idx_user_email_active;
+        - createIndex:
+            indexName: idx_user_email
+            tableName: user
+            columns:
+              - column:
+                  name: email
+        - addUniqueConstraint:
+            constraintName: user_email_key
+            tableName: user
+            columnNames: email
+
+  # ========================
+  # Username Field Changes
+  # ========================
+  - changeSet:
+      id: 006-02-username-partial-unique-index
+      author: aditya
+      changes:
+        - dropUniqueConstraint:
+            constraintName: user_username_key
+            tableName: user
+        - dropIndex:
+            indexName: idx_user_username
+            tableName: user
+        - sql:
+            sql: CREATE UNIQUE INDEX idx_user_username_active ON "user"(username) WHERE deleted_at IS NULL;
+      rollback:
+        - sql: DROP INDEX IF EXISTS idx_user_username_active;
+        - createIndex:
+            indexName: idx_user_username
+            tableName: user
+            columns:
+              - column:
+                  name: username
+        - addUniqueConstraint:
+            constraintName: user_username_key
+            tableName: user
+            columnNames: username

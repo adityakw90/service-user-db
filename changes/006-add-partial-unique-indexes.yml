@@ -1,0 +1,32 @@
+databaseChangeLog:
+  # ========================
+  # Email Field Changes
+  # ========================
+  - changeSet:
+      id: 006-01-email-partial-unique-index
+      author: aditya
+      changes:
+        - dropUniqueConstraint:
+            constraintName: user_email_key
+            tableName: user
+        - dropIndex:
+            indexName: idx_user_email
+            tableName: user
+        - sql:
+            sql: CREATE UNIQUE INDEX idx_user_email_active ON public.user(email) WHERE deleted_at IS NULL;
+
+  # ========================
+  # Username Field Changes
+  # ========================
+  - changeSet:
+      id: 006-02-username-partial-unique-index
+      author: aditya
+      changes:
+        - dropUniqueConstraint:
+            constraintName: user_username_key
+            tableName: user
+        - dropIndex:
+            indexName: idx_user_username
+            tableName: user
+        - sql:
+            sql: CREATE UNIQUE INDEX idx_user_username_active ON public.user(username) WHERE deleted_at IS NULL;

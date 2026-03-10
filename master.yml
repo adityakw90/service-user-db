@@ -9,3 +9,5 @@ databaseChangeLog:
       file: changes/004-create-user-profile-table.yml
   - include:
       file: changes/005-add-session-id-to-user-device.yml
+  - include:
+      file: changes/006-add-partial-unique-indexes.yml
